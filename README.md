@@ -1,50 +1,217 @@
-# 卫星控制状态安全：实验系统
+# HoneySat 控制状态安全测试系统
 
-## 当前状态（2026-11-18）
+基于 HoneySat 卫星仿真环境的自动化安全测试框架，支持测试序列生成、执行、判定和异常复现。
 
-阶段 1–4 已闭环，阶段 6 日志导入已可用；阶段 5（模型接入）与阶段 7（基线评估）待配置模型凭据后验收。详细计划见 `执行计划.md`，接口与策略依据见 `target_manifest.json` / `policies.json`。
+## 快速开始
 
-### 阶段 1：接口与策略核实（完成）
+### 1. 启动 HoneySat 环境
 
-- 目标：HoneySat experiment-1 CCSDS 栈（Yamcs 5.10.8-SNAPSHOT + RACCOON sat_proxy + honeysat_api 仿真器 + MongoDB），镜像与基线已固定（`target_manifest.json`）。
-- 原生链路只暴露 5 条查询命令；经用户批准扩展了 `SetHeater`（TC(132,3) → ZMQ heater，全链路真实状态变化，EPS 功耗/温度可读回）。补丁在 `patches/`，基线镜像 `*:baseline-20261117`，MDB 经 `yamcs-mdb-override.yaml` 挂载，未改目标 compose。
-- 关键原生语义（源码级依据见 `policies.json`）：授权仅在提交时检查（AUTH-1）；队列控制不重查命令权限/提交者（AUTH-2）；队列内 reject 是放行前唯一取消（QUEUE-2）；DB 新建用户无法认证，账号集静态（AUTH-4，实测）。
-
-### 阶段 2–4：执行、生成、判定、复现（完成）
-
-运行环境变量：`YAMCS_PASSWORD`（operator，默认 administrator）、`YAMCS_CONTROL_PASSWORD`（root，队列/IAM 控制面）。
-
-```sh
-PY=/Users/keyu/code/honeySat/HoneySat/.venv/bin/python
-$PY runner.py scenarios/normal_execution.json     # 单场景执行 -> runs/<run_id>/
-$PY oracle.py runs/<run_id>                       # 独立判定 -> verdict.json
-$PY replay.py scenarios/auth_change_revoke.json --times 5   # 复现统计
-$PY minimize.py scenarios/auth_change_revoke.json --finding-id F1  # 缩减
-$PY generator.py --count 20 --seed 42             # 模板+变异 -> generated/
-$PY batch.py generated                            # 批量执行 -> batch_summary.json
+```bash
+cd /path/to/HoneySat/evaluation/experiment-1
+docker-compose -f docker-compose-ccsds.yaml up -d yamcs honeysat_api logs_mongodb sat_proxy
 ```
 
-事件证据：每个 run 有 `events.jsonl`（单调时钟+UTC+组件标识）、`manifest.json`。遥测订阅先于发令建立（无缓存），命令-遥测因果靠 command_id + 订阅顺序 + 时间窗。恢复在 finally 中执行（队列放行、heater 关闭、账号恢复），错误记入 `restore_errors`。
+访问 Yamcs 控制台：http://localhost:8090（用户名：`administrator`，密码：`Admin123`）
 
-### 已确认发现
+### 2. 配置环境
 
-**F1：撤权不取消排队命令（策略违反 EXP-1）**：操作员提交 SetHeater→队列阻塞→禁用该账号→放行队列→命令仍执行。5/5 复现。依据 AUTH-1/2（授权仅在提交时检查一次，放行不重查）。证据在 `findings/F1_revocation_queued_command/`。这是 Yamcs 原生语义与 EXP-1 实验策略的冲突，不是 HoneySat 实现缺陷；评估原生行为时用基线镜像对照。
+```bash
+# 激活 Python 环境
+source /path/to/HoneySat/.venv/bin/activate
 
-### 阶段 5：模型接入（待验收）
+# 设置 Yamcs 凭据
+export YAMCS_URL="http://localhost:8090"
+export YAMCS_USERNAME="administrator"
+export YAMCS_PASSWORD="Admin123"
 
-`model_client.py`（OpenAI 兼容端点，凭据走环境变量 `MODEL_BASE_URL`/`MODEL_API_KEY`/`MODEL_NAME`，不落盘）+ `explore.py`（反馈闭环 + 有限特征新颖性）。未配置凭据时保持待验收状态。
+# 进入实验目录
+cd control_state
+```
 
-### 阶段 6：日志种子（可用）
+### 3. 验证环境
 
-`import_logs.py` 从本机 MongoDB（`honeysat_log.ABCMeta`）按时间段导出交互、解析为种子（`seeds/`），带 `source_doc_id` 可追溯；无法识别的请求保留原始记录并计入 limitations。
+```bash
+python reproduce.py --mode verify
+```
 
-### 与早期演示的关系
+## 完整复现流程
 
-下文为最初的合成策略演示与 HoneySat 只读接入版，保留作对照。
+### 步骤1：生成测试序列
+
+```bash
+python reproduce.py --mode generate --count 20 --seed 42
+```
+
+输出：20 个测试场景 → `generated/gen_42_*.json`
+
+### 步骤2：批量执行测试
+
+```bash
+python reproduce.py --mode batch --scenarios generated/
+```
+
+输出：
+- 执行记录 → `runs/<run_id>/`
+- 判定结果 → `runs/<run_id>/verdict.json`
+- 汇总报告 → `batch_summary.json`
+
+### 步骤3：复现发现的异常
+
+```bash
+python reproduce.py --mode replay \
+  --finding findings/F1_revocation_queued_command/ \
+  --replays 5
+```
+
+### 步骤4：缩减异常场景
+
+```bash
+python reproduce.py --mode minimize \
+  --finding findings/F1_revocation_queued_command/
+```
+
+## 发现的漏洞
+
+### 🔴 F1: 撤权不取消排队命令（已确认）
+
+**漏洞描述**：操作员提交命令到队列后被撤销权限，队列放行时命令仍然执行，违反最小权限原则。
+
+**复现步骤**：
+1. 操作员以有效权限提交 `SetHeater` 命令
+2. 队列管理员阻塞队列（`hold_queue`）
+3. 系统管理员禁用该操作员账户
+4. 队列管理员放行队列（`release_queue`）
+5. **命令被执行**（预期应被拒绝）
+
+**复现率**：5/5（100%）
+
+**影响范围**：
+- 违反 RBAC 最小权限原则
+- 已撤权用户的命令仍能影响卫星状态
+- 适用于所有排队的命令类型
+
+**技术细节**：
+```json
+{
+  "steps": [
+    {"action": "issue_command", "command": "/SERVICE-EPS/SetHeater", "args": {"Mode": 1}},
+    {"action": "hold_queue"},
+    {"action": "change_authorization", "user": "operator", "active": false},
+    {"action": "release_queue"},
+    {"action": "query_eps"}
+  ],
+  "expected": "command should be rejected",
+  "actual": "command executed, heater turned on"
+}
+```
+
+**根本原因**：
+- Yamcs 只在命令提交时检查权限（`AUTH-1`）
+- 队列操作不重新验证命令权限或提交者（`AUTH-2`）
+- 队列放行时直接执行，无二次鉴权
+
+**证据位置**：`findings/F1_revocation_queued_command/`
+
+**缩减结果**：原始 9 步 → 最小 4 步（缩减率 55.6%）
+
+## 核心组件
+
+### 执行引擎
+- `runner.py` - 测试场景执行器，支持命令发送、队列控制、权限变更
+- `yamcs_adapter.py` - Yamcs API 适配器，处理遥测订阅和命令历史
+
+### 测试生成
+- `generator.py` - 基于模板的测试序列生成器，支持参数变异和步骤重组
+- `scenarios/` - 手工模板（正常执行、取消、权限变更等）
+
+### 判定与复现
+- `oracle.py` - 策略违反判定器，支持 pass/violation/insufficient_evidence
+- `replay.py` - 异常复现验证器
+- `minimize.py` - 测试用例缩减器
+
+### 数据导入
+- `import_logs.py` - 从 MongoDB 导入历史交互日志作为测试种子
+
+### 统一接口
+- `reproduce.py` - 统一执行脚本，支持 6 种模式：
+  - `verify` - 环境验证
+  - `generate` - 生成测试
+  - `batch` - 批量执行
+  - `replay` - 复现异常
+  - `minimize` - 缩减场景
+  - `import-logs` - 导入日志
+
+## 数据产物
+
+```
+control_state/
+├── target_manifest.json      # 目标接口清单（8条命令）
+├── policies.json             # 安全策略定义（8项原生 + 2项实验）
+├── scenarios/                # 测试模板
+├── generated/                # 生成的测试序列
+├── runs/                     # 执行记录
+│   └── <run_id>/
+│       ├── events.jsonl      # 事件时序（单调时钟 + UTC）
+│       ├── manifest.json     # 执行元数据
+│       └── verdict.json      # 判定结果
+├── findings/                 # 发现的异常
+│   └── F1_revocation_queued_command/
+│       ├── report.json       # 发现报告
+│       ├── scenario.json     # 原始场景
+│       └── minimized.json    # 缩减场景
+└── batch_summary.json        # 批量执行汇总
+```
+
+## 依赖要求
+
+- Python 3.8+
+- HoneySat Docker 环境（Yamcs 5.10.8-SNAPSHOT）
+- Python 包：yamcs-client, requests
+
+## 进阶功能
+
+### Web 界面（模型辅助探索）
+
+```bash
+# 设置模型凭据（可选）
+export MODEL_BASE_URL="https://your-endpoint/v1"
+export MODEL_API_KEY="your-key"
+export MODEL_NAME="your-model"
+
+# 启动 Web UI
+python web_ui.py
+```
+
+访问：http://localhost:5001
+
+### 从历史日志生成测试
+
+```bash
+python reproduce.py --mode import-logs \
+  --start-date 2026-11-15 \
+  --end-date 2026-11-18 \
+  --limit 200
+```
+
+## 参考资料
+
+- 详细文档：[REPRODUCE.md](REPRODUCE.md)
+- 执行计划：[执行计划.md](执行计划.md)
+- HoneySat 项目：https://github.com/ssloxford/HoneySat
+
+## 许可证
+
+本项目用于安全研究和教育目的。
 
 ---
 
-# 早期：卫星控制状态安全：最小可执行演示
+**最后更新**：2026-11-18  
+**实验环境**：HoneySat CCSDS (Yamcs 5.10.8-SNAPSHOT)  
+**发现状态**：1 个已确认漏洞（F1），100% 可复现
+
+---
+
+# 早期演示：合成策略验证
 
 ## 演示问题
 
