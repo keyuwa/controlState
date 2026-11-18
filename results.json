@@ -1,0 +1,179 @@
+[
+  {
+    "scenario": "normal",
+    "protected": true,
+    "policy_violation": false,
+    "final_state": {
+      "authorized": true,
+      "epoch": 1,
+      "heater": true
+    },
+    "events": [
+      {
+        "step": 1,
+        "event": "SUBMIT_AUTHORIZED",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        },
+        "command": {
+          "operator": "operator-a",
+          "operation": "heater_on",
+          "epoch": 1
+        }
+      },
+      {
+        "step": 2,
+        "event": "QUEUED_LINK_UNAVAILABLE",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        }
+      },
+      {
+        "step": 3,
+        "event": "LINK_RESTORED",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        }
+      },
+      {
+        "step": 4,
+        "event": "EXECUTED_HEATER_ON",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": true
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "vulnerable",
+    "protected": false,
+    "policy_violation": true,
+    "final_state": {
+      "authorized": false,
+      "epoch": 2,
+      "heater": true
+    },
+    "events": [
+      {
+        "step": 1,
+        "event": "SUBMIT_AUTHORIZED",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        },
+        "command": {
+          "operator": "operator-a",
+          "operation": "heater_on",
+          "epoch": 1
+        }
+      },
+      {
+        "step": 2,
+        "event": "QUEUED_LINK_UNAVAILABLE",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        }
+      },
+      {
+        "step": 3,
+        "event": "REVOKED_AND_SYNCHRONIZED_TO_EXECUTOR",
+        "state": {
+          "authorized": false,
+          "epoch": 2,
+          "heater": false
+        }
+      },
+      {
+        "step": 4,
+        "event": "LINK_RESTORED",
+        "state": {
+          "authorized": false,
+          "epoch": 2,
+          "heater": false
+        }
+      },
+      {
+        "step": 5,
+        "event": "EXECUTED_HEATER_ON",
+        "state": {
+          "authorized": false,
+          "epoch": 2,
+          "heater": true
+        }
+      }
+    ]
+  },
+  {
+    "scenario": "protected",
+    "protected": true,
+    "policy_violation": false,
+    "final_state": {
+      "authorized": false,
+      "epoch": 2,
+      "heater": false
+    },
+    "events": [
+      {
+        "step": 1,
+        "event": "SUBMIT_AUTHORIZED",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        },
+        "command": {
+          "operator": "operator-a",
+          "operation": "heater_on",
+          "epoch": 1
+        }
+      },
+      {
+        "step": 2,
+        "event": "QUEUED_LINK_UNAVAILABLE",
+        "state": {
+          "authorized": true,
+          "epoch": 1,
+          "heater": false
+        }
+      },
+      {
+        "step": 3,
+        "event": "REVOKED_AND_SYNCHRONIZED_TO_EXECUTOR",
+        "state": {
+          "authorized": false,
+          "epoch": 2,
+          "heater": false
+        }
+      },
+      {
+        "step": 4,
+        "event": "LINK_RESTORED",
+        "state": {
+          "authorized": false,
+          "epoch": 2,
+          "heater": false
+        }
+      },
+      {
+        "step": 5,
+        "event": "REJECTED_STALE_AUTHORIZATION",
+        "state": {
+          "authorized": false,
+          "epoch": 2,
+          "heater": false
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "scenario_id": "gen_42_018",
+  "description": "正常执行：提交加热器开启，等待完成遥测读回",
+  "policy_ids": [
+    "EXP-2"
+  ],
+  "initial_state": {
+    "queue": "ENABLED",
+    "heater": 0
+  },
+  "steps": [
+    {
+      "step_id": "g1",
+      "action": "issue_command",
+      "command": "/SERVICE-EPS/SetHeater",
+      "args": {
+        "Mode": 0
+      },
+      "timeout": 30
+    },
+    {
+      "step_id": "g2",
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "action": "query_eps",
+      "step_id": "g3"
+    },
+    {
+      "step_id": "g4",
+      "action": "read_state"
+    },
+    {
+      "step_id": "g5",
+      "action": "query_eps"
+    }
+  ],
+  "expected": {
+    "heater": 0,
+    "queue": "ENABLED",
+    "verdict": "pass"
+  }
+}

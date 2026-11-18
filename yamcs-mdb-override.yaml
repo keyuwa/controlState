@@ -1,0 +1,11 @@
+# 实验扩展配置（不修改目标 compose）：为 Yamcs 挂载实验补丁后的 MDB
+# 用法（在 evaluation/experiment-1 下）：
+#   docker compose -f docker-compose-ccsds.yaml \
+#     -f /Users/keyu/Documents/科研/卫星互联网安全/experiments/control_state/yamcs-mdb-override.yaml \
+#     up -d yamcs
+# 该挂载用宿主机 mdb 目录（含 SetHeater 实验命令）只读覆盖容器内 /app/honeysat-1.0.0/mdb。
+# 除 service-eps.xml 新增 SetHeater 外，其余文件与容器基线 md5 一致（见 target_manifest.json）。
+services:
+  yamcs:
+    volumes:
+      - /Users/keyu/code/honeySat/HoneySat/deployment/projects/yamcs/yamcs-instance/src/main/yamcs/mdb:/app/honeysat-1.0.0/mdb:ro

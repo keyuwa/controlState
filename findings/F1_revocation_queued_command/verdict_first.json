@@ -1,0 +1,6 @@
+{
+  "verdict": "policy_violation",
+  "policy_id": "EXP-1",
+  "rationale": "command(s) ['1794919779273-172.20.0.1-2'] released after revocation of administrator and executed (AUTH-1/2: authorization checked only at submission)",
+  "evidence_events": 102
+}

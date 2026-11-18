@@ -1,0 +1,84 @@
+--- patches/baseline/raccoon-wrapper/src/rccn_usr_honeysat_app/src/eps_service/service.rs	2026-11-17 20:18:16
++++ /Users/keyu/code/honeySat/HoneySat/deployment/projects/raccoon-wrapper/src/rccn_usr_honeysat_app/src/eps_service/service.rs	2026-11-17 20:19:15
+@@ -15,6 +15,19 @@
+         Self { }
+     }
+ 
++    /// Set the battery heater on (mode > 0) or off (mode == 0).
++    /// Returns the simulator status code as i32.
++    fn set_heater(&self, mode: u8) -> Result<i32, ParameterError> {
++        let response = zmq_interface::send_command(&hs_commands::eps_set_heater(mode));
++
++        if response.is_err(){
++            return Err(ParameterError::UnknownParameter(0));
++        }
++
++        let data = response.unwrap();
++        Ok(LittleEndian::read_i32(data[0..4].as_ref()))
++    }
++
+     /// Get EPS data as a vector of length 4
+     /// voltage, current_in, current_out, temperature
+     fn get_data(&self) -> Result<Vec<i32>, ParameterError> {
+@@ -40,25 +53,45 @@
+ impl PusService for EPSService {
+     type CommandT = command::Command;
+ 
+-    fn handle_tc(&mut self, mut tc: AcceptedTc, _cmd: Self::CommandT) -> AcceptanceResult {
+-        // There's only one tc in this service. No need to match on subservice.
+-        tc.handle_with_tm(||{
+-            println!("Received EPS service request");
++    fn handle_tc(&mut self, mut tc: AcceptedTc, cmd: Self::CommandT) -> AcceptanceResult {
++        match cmd {
++            Self::CommandT::EPSCommand => {
++                tc.handle_with_tm(||{
++                    println!("Received EPS service request");
+ 
+-            let mut data = [0u8; 4 * 4];
+-            let mut writer = BitWriter::wrap(&mut data);
+-            let eps_data = self.get_data()?;
++                    let mut data = [0u8; 4 * 4];
++                    let mut writer = BitWriter::wrap(&mut data);
++                    let eps_data = self.get_data()?;
+ 
+-            for value in eps_data {
+-                writer.write_bits(value as u64, 32)
+-                    .map_err(ParameterError::WriteError)?;
+-            }
++                    for value in eps_data {
++                        writer.write_bits(value as u64, 32)
++                            .map_err(ParameterError::WriteError)?;
++                    }
+ 
+-            Ok::<SubserviceTmData, ParameterError>(SubserviceTmData{
+-                subservice: 0,
+-                data: Vec::from(&data),
+-            })
+-        })
++                    Ok::<SubserviceTmData, ParameterError>(SubserviceTmData{
++                        subservice: 0,
++                        data: Vec::from(&data),
++                    })
++                })
++            },
++            Self::CommandT::SetHeaterCommand { mode } => {
++                tc.handle_with_tm(||{
++                    println!("Received EPS heater set request, mode: {mode}");
++
++                    let mut data = [0u8; 4];
++                    let mut writer = BitWriter::wrap(&mut data);
++                    let status = self.set_heater(mode)?;
++
++                    writer.write_bits(status as u64, 32)
++                        .map_err(ParameterError::WriteError)?;
++
++                    Ok::<SubserviceTmData, ParameterError>(SubserviceTmData{
++                        subservice: 3,
++                        data: Vec::from(&data),
++                    })
++                })
++            },
++        }
+     }
+ 
+     fn service() -> u8 {

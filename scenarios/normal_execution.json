@@ -1,0 +1,40 @@
+{
+  "scenario_id": "normal_execution",
+  "description": "正常执行：提交加热器开启，等待完成遥测读回",
+  "policy_ids": [
+    "EXP-2"
+  ],
+  "initial_state": {
+    "queue": "ENABLED",
+    "heater": 0
+  },
+  "steps": [
+    {
+      "step_id": "s1",
+      "action": "issue_command",
+      "command": "/SERVICE-EPS/SetHeater",
+      "args": {
+        "Mode": 1
+      },
+      "timeout": 30
+    },
+    {
+      "step_id": "s2",
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "step_id": "s3_pre",
+      "action": "query_eps"
+    },
+    {
+      "step_id": "s3",
+      "action": "read_state"
+    }
+  ],
+  "expected": {
+    "heater": 1,
+    "queue": "ENABLED",
+    "verdict": "pass"
+  }
+}

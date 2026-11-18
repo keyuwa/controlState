@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Satellite control test sequence",
+  "type": "object",
+  "required": ["scenario_id", "initial_state", "steps", "expected"],
+  "properties": {
+    "scenario_id": {"type": "string"},
+    "description": {"type": "string"},
+    "policy_ids": {"type": "array", "items": {"type": "string"}},
+    "initial_state": {
+      "type": "object",
+      "properties": {
+        "queue": {"enum": ["ENABLED", "BLOCKED", "DISABLED"]},
+        "heater": {"enum": [0, 1]},
+        "users": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "action"],
+        "properties": {
+          "step_id": {"type": "string"},
+          "action": {
+            "enum": ["issue_command", "hold_queue", "release_queue",
+                     "disable_queue", "cancel_pending", "change_authorization",
+                     "change_mode", "read_state", "wait"]
+          },
+          "command": {"type": "string", "description": "qualified XTCE path"},
+          "args": {"type": "object"},
+          "user": {"type": "string"},
+          "active": {"type": "boolean"},
+          "mode": {"type": "integer"},
+          "parameters": {"type": "array", "items": {"type": "string"}},
+          "timeout": {"type": "number", "default": 30},
+          "expect": {
+            "type": "object",
+            "properties": {
+              "result": {"enum": ["completed", "rejected", "queued", "failed"]},
+              "policy": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "properties": {
+        "heater": {"enum": [0, 1, "unchanged"]},
+        "queue": {"enum": ["ENABLED", "BLOCKED", "DISABLED"]},
+        "verdict": {"enum": ["pass", "policy_violation", "insufficient_evidence", "environment_error"]},
+        "policy_id": {"type": "string"}
+      }
+    }
+  }
+}

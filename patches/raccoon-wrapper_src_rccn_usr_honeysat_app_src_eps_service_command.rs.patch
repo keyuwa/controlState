@@ -1,0 +1,48 @@
+--- patches/baseline/raccoon-wrapper/src/rccn_usr_honeysat_app/src/eps_service/command.rs	2026-11-17 20:18:16
++++ /Users/keyu/code/honeySat/HoneySat/deployment/projects/raccoon-wrapper/src/rccn_usr_honeysat_app/src/eps_service/command.rs	2026-11-17 20:18:39
+@@ -1,18 +1,11 @@
+-use binary_serde::{BinarySerde, Endianness};
+ use rccn_usr::service::{CommandParseError, CommandParseResult, ServiceCommand};
+ use satrs::spacepackets::ecss::{tc::PusTcReader, PusPacket};
+ 
+-pub mod eps_command {
+-    use binary_serde::{binary_serde_bitfield, BitfieldBitOrder};
+-
+-    #[binary_serde_bitfield(order = BitfieldBitOrder::MsbFirst)]
+-    #[derive(Debug, PartialEq)]
+-    pub struct Args {
+-    }
+-}
+-
+ pub enum Command {
+-    EPSCommand(eps_command::Args),
++    /// TC(132,1) - query EPS housekeeping data (voltage, currents, temperature)
++    EPSCommand,
++    /// TC(132,3) - set battery heater mode; one app-data byte (0 = off, >0 = on)
++    SetHeaterCommand { mode: u8 },
+ }
+ 
+ impl ServiceCommand for Command {
+@@ -21,11 +14,16 @@
+         Self: Sized,
+     {
+         println!("Parsing EPS command with subservice: {}", tc.subservice());
+-        let args = eps_command::Args::binary_deserialize(
+-            &tc.app_data(),
+-            Endianness::Big,
+-        )
+-        .map_err(|_| CommandParseError::Other)?;
+-        Ok(Command::EPSCommand(args))
++        match tc.subservice() {
++            1 => Ok(Command::EPSCommand),
++            3 => {
++                let app_data = tc.app_data();
++                if app_data.len() != 1 {
++                    return Err(CommandParseError::Other);
++                }
++                Ok(Command::SetHeaterCommand { mode: app_data[0] })
++            }
++            _ => Err(CommandParseError::UnknownSubservice(tc.subservice())),
++        }
+     }
+ }

@@ -1,0 +1,229 @@
+{
+  "events": [
+    {
+      "tag": "baseline",
+      "tm": [
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 8096,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 23,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        }
+      ]
+    },
+    {
+      "tag": "heater_on",
+      "tm": [
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 8096,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 23,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        }
+      ]
+    },
+    {
+      "tag": "heater_on_readback",
+      "tm": [
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 8096,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 23,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 7997,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 618,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 26,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        }
+      ]
+    },
+    {
+      "tag": "heater_off",
+      "tm": [
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 8096,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 23,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 7997,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 618,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 26,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        }
+      ]
+    },
+    {
+      "tag": "heater_off_readback",
+      "tm": [
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 8096,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 0,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 23,
+          "gen": "2026-11-17 20:33:14.891000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 7997,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 618,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 26,
+          "gen": "2026-11-17 20:33:18.391000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_VOLTAGE",
+          "v": 7994,
+          "gen": "2026-11-17 20:33:21.496000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_IN",
+          "v": 0,
+          "gen": "2026-11-17 20:33:21.496000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_CURRENT_OUT",
+          "v": 0,
+          "gen": "2026-11-17 20:33:21.496000+08:00"
+        },
+        {
+          "p": "/SERVICE-EPS/EPS_TEMPERATURE",
+          "v": 31,
+          "gen": "2026-11-17 20:33:21.496000+08:00"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "EPS_VOLTAGE": 8096,
+      "EPS_CURRENT_IN": 0,
+      "EPS_CURRENT_OUT": 0,
+      "EPS_TEMPERATURE": 23
+    },
+    "heater_on_readback": {
+      "EPS_VOLTAGE": 7997,
+      "EPS_CURRENT_IN": 0,
+      "EPS_CURRENT_OUT": 618,
+      "EPS_TEMPERATURE": 26
+    },
+    "heater_off_readback": {
+      "EPS_VOLTAGE": 7994,
+      "EPS_CURRENT_IN": 0,
+      "EPS_CURRENT_OUT": 0,
+      "EPS_TEMPERATURE": 31
+    }
+  }
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "queued": {
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "epoch": 1
+    },
+    "revoked": false,
+    "release_epoch": 1,
+    "result": "completed",
+    "command_id": "1794915789111-172.20.0.1-1",
+    "telemetry": {
+      "value": 8022,
+      "generation_time": "2026-11-17 19:42:32.010000+08:00"
+    }
+  },
+  {
+    "queued": {
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "epoch": 1
+    },
+    "revoked": true,
+    "release_epoch": 2,
+    "result": "denied_before_yamcs_submission"
+  }
+]

@@ -1,0 +1,216 @@
+{
+  "source": {
+    "kind": "local_honeysat_mongodb",
+    "uri": "mongodb://localhost:27017",
+    "db": "honeysat_log",
+    "collection": "ABCMeta",
+    "filter": {},
+    "imported_at": "2026-11-17T17:06:10.404370+00:00",
+    "note": "本机 HoneySat 容器日志；含本实验脚本产生的交互（local_script_experiment 与外部会话未在库内区分，按时间段人工标注）"
+  },
+  "count": 0,
+  "limitations_count": 149,
+  "seeds": [],
+  "limitations": [
+    {
+      "doc_id": "6aebdf82e9dee735f9548c4e",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdf82e9dee735f9548c50",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdf82e9dee735f9548c52",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb1e9dee735f9548c54",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb1e9dee735f9548c56",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb2e9dee735f9548c58",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb2e9dee735f9548c5a",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb3e9dee735f9548c5c",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb3e9dee735f9548c5e",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb3e9dee735f9548c60",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb3e9dee735f9548c62",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb4e9dee735f9548c64",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebdfb4e9dee735f9548c66",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebedf4e9dee735f9548c68",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aebedf4e9dee735f9548c6a",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aec23c0e9dee735f9548c6c",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6aec23c0e9dee735f9548c6e",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6af1c2ca4411f58d696780cc",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6af6f16c522d16ce50918edd",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc3c6e80d95fea73d6faa5",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc3da880d95fea73d6faa7",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc3da980d95fea73d6faa9",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc3f5380d95fea73d6faab",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc3f5380d95fea73d6faad",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc48f58760aa11884a087c",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc48f58760aa11884a087e",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc48f58760aa11884a0880",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49078760aa11884a0882",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49078760aa11884a0884",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49098760aa11884a0886",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49098760aa11884a0888",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc490a8760aa11884a088a",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc490a8760aa11884a088c",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc490c8760aa11884a088e",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc490c8760aa11884a0890",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc490e8760aa11884a0892",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc490e8760aa11884a0894",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc498b8760aa11884a0896",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc498b8760aa11884a0898",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc498d8760aa11884a089a",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc498d8760aa11884a089c",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc498f8760aa11884a089e",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc498f8760aa11884a08a0",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49908760aa11884a08a2",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49908760aa11884a08a4",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49928760aa11884a08a6",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc49928760aa11884a08a8",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc4adf8760aa11884a08aa",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc4adf8760aa11884a08ac",
+      "reason": "unparseable_data"
+    },
+    {
+      "doc_id": "6afc4ae08760aa11884a08ae",
+      "reason": "unparseable_data"
+    }
+  ]
+}

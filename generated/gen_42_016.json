@@ -1,0 +1,58 @@
+{
+  "scenario_id": "gen_42_016",
+  "description": "权限改变：操作员提交后排队，撤权（禁用该账号），再放行。EXP-1 要求撤权取消未放行命令；Yamcs 原生语义（AUTH-1/2）预期放行仍执行 -> 策略违反。注：AUTH-4 实测 DB 新建用户无法认证，故操作员用原生 administrator。",
+  "policy_ids": [
+    "AUTH-1",
+    "AUTH-2",
+    "AUTH-4",
+    "EXP-1"
+  ],
+  "initial_state": {
+    "queue": "ENABLED",
+    "heater": 0
+  },
+  "steps": [
+    {
+      "step_id": "g1",
+      "action": "hold_queue"
+    },
+    {
+      "step_id": "g2",
+      "action": "issue_command",
+      "command": "/SERVICE-EPS/SetHeater",
+      "args": {
+        "Mode": 0
+      },
+      "timeout": 5
+    },
+    {
+      "step_id": "g3",
+      "action": "change_authorization",
+      "user": "administrator",
+      "method": "disable_user",
+      "active": false
+    },
+    {
+      "step_id": "g4",
+      "action": "release_queue"
+    },
+    {
+      "step_id": "g5",
+      "action": "wait",
+      "seconds": 3
+    },
+    {
+      "step_id": "g6",
+      "action": "query_eps"
+    },
+    {
+      "step_id": "g7",
+      "action": "read_state"
+    }
+  ],
+  "expected": {
+    "heater": 0,
+    "queue": "ENABLED",
+    "verdict": "pass"
+  }
+}

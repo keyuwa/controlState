@@ -1,0 +1,170 @@
+{
+  "total": 20,
+  "tally": {
+    "pass": 10,
+    "policy_violation": 3,
+    "insufficient_evidence": 7
+  },
+  "runs": [
+    {
+      "scenario": "gen_42_000",
+      "run_id": "20261117T170745-d00f5607",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=True expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_001",
+      "run_id": "20261117T170759-5bbb93a3",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=False expected=0",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_002",
+      "run_id": "20261117T170818-40e7d38e",
+      "verdict": "policy_violation",
+      "policy_id": null,
+      "rationale": "heater=False expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_003",
+      "run_id": "20261117T170900-5cbe2ba3",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no scenario rule matched",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_004",
+      "run_id": "20261117T170904-e1c2594b",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=False expected=0",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_005",
+      "run_id": "20261117T170909-9e1be2a0",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=True expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_006",
+      "run_id": "20261117T170922-8260500e",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no scenario rule matched",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_007",
+      "run_id": "20261117T170927-77f18904",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=True expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_008",
+      "run_id": "20261117T170932-41bbdc23",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=False expected=0",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_009",
+      "run_id": "20261117T170944-0911431f",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no EPS_CURRENT_OUT telemetry evidence",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_010",
+      "run_id": "20261117T170958-bcd47ad2",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no scenario rule matched",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_011",
+      "run_id": "20261117T171005-294f8008",
+      "verdict": "policy_violation",
+      "policy_id": null,
+      "rationale": "heater=False expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_012",
+      "run_id": "20261117T171018-28b38e85",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no scenario rule matched",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_013",
+      "run_id": "20261117T171022-c1333cbe",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=True expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_014",
+      "run_id": "20261117T171027-3a31b963",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=False expected=0",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_015",
+      "run_id": "20261117T171038-6e77adf8",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no scenario rule matched",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_016",
+      "run_id": "20261117T171042-89b041bb",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=False expected=0",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_017",
+      "run_id": "20261117T171053-62473685",
+      "verdict": "policy_violation",
+      "policy_id": null,
+      "rationale": "heater=False expected=1",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_018",
+      "run_id": "20261117T171105-87520d9e",
+      "verdict": "pass",
+      "policy_id": null,
+      "rationale": "heater=False expected=0",
+      "restore_errors": []
+    },
+    {
+      "scenario": "gen_42_019",
+      "run_id": "20261117T171111-31d368e1",
+      "verdict": "insufficient_evidence",
+      "policy_id": null,
+      "rationale": "no EPS_CURRENT_OUT telemetry evidence",
+      "restore_errors": []
+    }
+  ]
+}

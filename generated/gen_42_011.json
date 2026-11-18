@@ -1,0 +1,62 @@
+{
+  "scenario_id": "gen_42_011",
+  "description": "取消待执行操作：阻塞队列后提交，reject 取消，再放行，加热器应保持关闭",
+  "policy_ids": [
+    "QUEUE-2",
+    "EXP-1"
+  ],
+  "initial_state": {
+    "queue": "ENABLED",
+    "heater": 0
+  },
+  "steps": [
+    {
+      "step_id": "g1",
+      "action": "hold_queue"
+    },
+    {
+      "step_id": "g2",
+      "action": "issue_command",
+      "command": "/SERVICE-EPS/SetHeater",
+      "args": {
+        "Mode": 1
+      },
+      "timeout": 5
+    },
+    {
+      "step_id": "g3",
+      "action": "cancel_pending"
+    },
+    {
+      "action": "read_state",
+      "step_id": "g4"
+    },
+    {
+      "step_id": "g5",
+      "action": "release_queue"
+    },
+    {
+      "step_id": "g6",
+      "action": "wait",
+      "seconds": 2
+    },
+    {
+      "step_id": "g7",
+      "action": "query_eps"
+    },
+    {
+      "step_id": "g8",
+      "action": "read_state"
+    },
+    {
+      "action": "wait",
+      "seconds": 2,
+      "step_id": "g9"
+    }
+  ],
+  "expected": {
+    "heater": 1,
+    "queue": "ENABLED",
+    "verdict": "pass"
+  }
+}

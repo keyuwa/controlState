@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 实验数据（不上传执行记录，保持仓库干净）
+runs/
+explore_runs/
+RECORD/
+*.jsonl
+model_calls.jsonl
+
+# 临时文件
+*.log
+*.tmp
+.DS_Store
+
+# 敏感信息
+.env
+*.key
+*_secret*
+
+# Flask
+instance/
+.webassets-cache

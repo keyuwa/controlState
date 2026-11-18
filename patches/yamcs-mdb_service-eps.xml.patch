@@ -1,0 +1,28 @@
+--- patches/baseline/yamcs-mdb/service-eps.xml	2026-11-17 20:18:16
++++ /Users/keyu/code/honeySat/HoneySat/deployment/projects/yamcs/yamcs-instance/src/main/yamcs/mdb/service-eps.xml	2026-11-17 20:19:29
+@@ -94,6 +94,25 @@
+         <DefaultSignificance consequenceLevel="normal"/>
+         <VerifierSet/>
+       </MetaCommand>
++      <MetaCommand name="SetHeater" abstract="false">
++        <BaseMetaCommand metaCommandRef="base">
++          <ArgumentAssignmentList>
++            <ArgumentAssignment argumentName="subtype" argumentValue="3"/>
++            <ArgumentAssignment argumentName="apid" argumentValue="42"/>
++          </ArgumentAssignmentList>
++        </BaseMetaCommand>
++        <ArgumentList>
++          <Argument argumentTypeRef="/dt/uint8" name="Mode"/>
++        </ArgumentList>
++        <CommandContainer name="SetHeater">
++          <EntryList>
++            <ArgumentRefEntry argumentRef="Mode"/>
++          </EntryList>
++          <BaseContainer containerRef="base"/>
++        </CommandContainer>
++        <DefaultSignificance consequenceLevel="normal"/>
++        <VerifierSet/>
++      </MetaCommand>
+       <MetaCommand name="base" abstract="true">
+         <BaseMetaCommand metaCommandRef="/PUS/pus-tc">
+           <ArgumentAssignmentList>

@@ -1,0 +1,116 @@
+{
+  "manifest_version": "1.0",
+  "created": "2026-11-17",
+  "target": {
+    "name": "HoneySat experiment-1 CCSDS stack",
+    "source_repo": "/Users/keyu/code/honeySat/HoneySat",
+    "git_commit": "edd7bf259646b37d4a62ffd7429e35f4163631ab",
+    "git_commit_date": "2026-04-10T10:24:58-06:00",
+    "working_tree": "dirty (95 files changed, diff md5=b4f82ce4785f236e690f943196dc314b); images were built from this tree",
+    "compose_file": "evaluation/experiment-1/docker-compose-ccsds.yaml",
+    "experiment_override": "yamcs-mdb-override.yaml (this directory; mounts patched MDB read-only, target compose untouched)"
+  },
+  "components": [
+    {
+      "component": "yamcs",
+      "container": "experiment-1-yamcs-1",
+      "image": "experiment-1-yamcs:latest",
+      "image_id": "sha256:8f3c024c50ba41732d870130a232b2bcf15ab827d3c70c69cfd9e437bc3dcb45",
+      "baseline_tag": "experiment-1-yamcs:baseline-20261117",
+      "role": "地面任务控制：命令受理、队列、验证、HTTP API :8090",
+      "version": "Yamcs 5.10.8-SNAPSHOT (yamcs-core 5.10.8-SNAPSHOT)",
+      "config_source": {
+        "security": "deployment/projects/yamcs/yamcs-instance/src/main/yamcs/etc/security.yaml (container /app/honeysat-1.0.0/etc/security.yaml, verified identical live)",
+        "users": "etc/users.yaml: root/sCvuyXIvEtC3Meu0 (superuser), administrator/Admin123 (Operator)",
+        "roles": "etc/roles.yaml: Operator = Command:.*, CommandHistory:.*, ReadParameter:.*, ReadPacket:.*, System:[CommandOptions]",
+        "instance": "etc/yamcs.satellite.yaml: instance satellite, TC link UdpTcFrameLink -> sat_proxy:10018, TM link UdpTmFrameLink :10017, MDB loaders dt.xml + xtce-pus-frame-attempt2.xml + service-{obc,eps,adcs}.xml"
+      }
+    },
+    {
+      "component": "sat_proxy",
+      "container": "experiment-1-sat_proxy-1",
+      "image": "experiment-1-sat_proxy:latest",
+      "image_id": "sha256:79a2a20d94895737a4fbe5ac9632ca8c1e3163809bd1d274f5739031e8f1c9f0",
+      "baseline_tag": "experiment-1-sat_proxy:baseline-20261117",
+      "role": "RACCOON 代理：CCSDS USLP 帧 <-> Zenoh <-> PUS 服务 (Rust)",
+      "services": {"OBC": 131, "EPS": 132, "ADCS": 133},
+      "reachability_check": "is_satellite_reachable() bypassed by ALWAYS_REACHABLE=1 (compose)"
+    },
+    {
+      "component": "honeysat_api",
+      "container": "experiment-1-honeysat_api-1",
+      "image": "experiment-1-honeysat_api:latest",
+      "image_id": "sha256:efa707c9bbf15e823ad0a16229538d1c33757e1b6fcd3578cd8ddc8fcf48d5b1",
+      "role": "Python 卫星仿真器核心：ZMQ REP tcp://*:5555 (无认证)，0.1s 主循环",
+      "state_modification_zmq": {
+        "note": "原生支持、未经 PUS/Yamcs 链路暴露（实验扩展前）；对 5555 直接可达即可调用",
+        "set_heater": {"bytes": "[0x02,0x02,mode]", "reply": "i32 LE 状态码", "source": "SatStates/SuchaiState.py:142-159"},
+        "hard_reset": {"bytes": "[0x02,0x03]", "reply": "i32 LE", "source": "SuchaiState.py:160-175"},
+        "set_torque": {"bytes": "[0x03,0x03,channel,duty]", "source": "SuchaiState.py:238-264"},
+        "camera_set_size": {"bytes": "[0x04,0x00,x,y]", "source": "SuchaiState.py:269-286"}
+      }
+    },
+    {
+      "component": "logs_mongodb",
+      "container": "experiment-1-logs_mongodb-1",
+      "image": "mongo:latest (sha256:452bdaf2127b)",
+      "role": "交互日志；库 honeysat_log；应用日志落在集合 'type'（SuchaiState.py:43 的 __class__.__name__ 误用），data.context 区分事件类型 (interface_request_and_replies / eps_set_heater / eps_hk / ...)"
+    }
+  ],
+  "interfaces": {
+    "commands": [
+      {"path": "/SERVICE-EPS/FetchEPSData", "args": [], "type": "query", "pus": "TC(132,1)", "effect": "触发 EPS 遥测下传 TM(132,0): EPS_VOLTAGE/EPS_CURRENT_IN/EPS_CURRENT_OUT/EPS_TEMPERATURE", "source": "mdb/service-eps.xml:83-96"},
+      {"path": "/SERVICE-EPS/SetHeater", "args": [{"name": "Mode", "type": "uint8", "range": "0=off, 1=on"}], "type": "state_modification", "pus": "TC(132,3)", "effect": "仿真器 EPS heater 开关 (HEATER_POWER=5W 功耗模型), 回 TM(132,3) 状态; 读回: FetchEPSData 功耗变化", "source": "EXPERIMENT EXTENSION (mdb/service-eps.xml SetHeater + raccoon eps_service; patch in patches/, baseline preserved)", "status": "added by experiment, not target-native"},
+      {"path": "/SERVICE-OBC/GetTemperature", "args": [], "type": "query", "pus": "TC(131,1)", "source": "mdb/service-obc.xml:60-73"},
+      {"path": "/SERVICE-ADCS/Fetch_ADCS_Mag_Data", "args": [], "type": "query", "pus": "TC(133,0)", "source": "mdb/service-adcs.xml:173-185"},
+      {"path": "/SERVICE-ADCS/Fetch_ADCS_Gyro_Data", "args": [], "type": "query", "pus": "TC(133,1)", "source": "mdb/service-adcs.xml:160-172"},
+      {"path": "/SERVICE-ADCS/Fetch_ADCS_Sun_Data", "args": [], "type": "query", "pus": "TC(133,2)", "source": "mdb/service-adcs.xml:186-198"}
+    ],
+    "telemetry": [
+      {"path": "/SERVICE-EPS/EPS_VOLTAGE", "type": "int32 BE"},
+      {"path": "/SERVICE-EPS/EPS_CURRENT_IN", "type": "int32 BE (mA)"},
+      {"path": "/SERVICE-EPS/EPS_CURRENT_OUT", "type": "int32 BE (mA)"},
+      {"path": "/SERVICE-EPS/EPS_TEMPERATURE", "type": "int32 BE (degC)"},
+      {"path": "/SERVICE-OBC/OBC_Temperature", "type": "int32, K->degC 校准"},
+      {"path": "/SERVICE-ADCS/ADCS_MAG_X|Y|Z", "type": "float32 LE"},
+      {"path": "/SERVICE-ADCS/ADCS_GYRO_X|Y|Z", "type": "float32 LE"},
+      {"path": "/SERVICE-ADCS/ADCS_SUN", "type": "int32"}
+    ],
+    "command_confirmation": {
+      "chain": "PUS TM(1,1) acceptance -> TM(1,3) start -> TM(1,7) completion success / TM(1,8) failure; Yamcs Received/Started/Complete JS verifiers 按 apid+seqcount 配对 (xtce-pus-frame-attempt2.xml:226-339)",
+      "yamcs_stages": ["Acknowledge_Queued", "TransmissionConstraints", "Acknowledge_Released", "Acknowledge_Sent", "Accepted(Received)", "Started(Execution)", "Complete(CompleteVerifier)", "CommandComplete"]
+    },
+    "queue_api": {
+      "note": "yamcs-client 1.12.0 无队列管理方法，用 REST",
+      "endpoints": [
+        "GET /api/processors/satellite/realtime/queues",
+        "POST /api/processors/satellite/realtime/queues/default:block",
+        "POST .../queues/default:enable (解除阻塞/禁用)",
+        "POST .../queues/default:disable",
+        "GET .../queues/default/commands",
+        "POST .../queues/default/commands/{cmd}:accept (手动放行单条)",
+        "POST .../queues/default/commands/{cmd}:reject (队列内拒收 = 放行前唯一取消)"
+      ],
+      "privilege": "ControlCommandQueue system privilege (administrator 的 Operator 角色不具备, 实测 403; root superuser 具备)"
+    },
+    "iam_api": {
+      "endpoints": ["GET /api/users", "POST /api/users", "PATCH/DELETE /api/users/{name} (可改 active/superuser/password/roles)", "GET /api/roles"],
+      "privilege": "ControlAccess"
+    },
+    "auth": "YamlAuthModule (required), OAuth2 password grant /auth/token + Basic; administrator/Admin123"
+  },
+  "verification": {
+    "mdb_consistency": "5 个活动 MDB 文件容器与源码 md5 全部一致 (2026-11-17)",
+    "live_checks": [
+      "GET /api/processors/satellite/realtime/queues -> default queue ENABLED, acceptedCommandsCount=2 (administrator 403 Missing ControlCommandQueue, root 200)",
+      "GET /api/links/satellite (root): udp_tc_frame_downlink -> sat_proxy:10018 OK, udp_tm_frame_uplink :10017 OK",
+      "FetchEPSData 正常组历史成功 (honeysat-results.json, command_id 1794915789111-172.20.0.1-1, 遥测 8022mV)"
+    ]
+  },
+  "known_limitations": [
+    "经 Yamcs/RACCOON 的原生命令仅 5 条查询；SetHeater 为实验扩展命令 (patches/), 评估原生行为时必须用 baseline 镜像对照",
+    "EPS 遥测为命令触发的按需下传，无周期 HK；参数缓存关闭 (parameterCache.enabled=false)，必须订阅就绪后再发令",
+    "Yamcs CORS allowOrigin=*；蜜罐 API 的 Mongo 凭证明文分布于 compose/源码",
+    "ALWAYS_REACHABLE=1 使 RACCOON 卫星可达性检查恒真"
+  ]
+}

@@ -1,0 +1,1430 @@
+{
+  "source": {
+    "kind": "local_honeysat_mongodb",
+    "uri": "mongodb://localhost:27017",
+    "db": "honeysat_log",
+    "collection": "ABCMeta",
+    "filter": {},
+    "imported_at": "2026-11-17T17:06:45.002741+00:00",
+    "note": "本机 HoneySat 容器日志；含本实验脚本产生的交互（local_script_experiment 与外部会话未在库内区分，按时间段人工标注）"
+  },
+  "count": 149,
+  "limitations_count": 94,
+  "seeds": [
+    {
+      "time": "2026-11-05 01:44:34.694000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdf82e9dee735f9548c4e",
+      "action": "comm_reachability_probe"
+    },
+    {
+      "time": "2026-11-05 01:44:34.893000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdf82e9dee735f9548c50",
+      "raw_request": "None",
+      "context": "gyroscope"
+    },
+    {
+      "time": "2026-11-05 01:44:34.902000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdf82e9dee735f9548c52",
+      "raw_request": "b'\\x03\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-05 01:45:21.620000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb1e9dee735f9548c54",
+      "raw_request": "None",
+      "context": "gyroscope"
+    },
+    {
+      "time": "2026-11-05 01:45:21.632000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb1e9dee735f9548c56",
+      "raw_request": "b'\\x03\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-05 01:45:22.407000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb2e9dee735f9548c58",
+      "raw_request": "None",
+      "context": "magnetic_field_mGauss"
+    },
+    {
+      "time": "2026-11-05 01:45:22.411000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb2e9dee735f9548c5a",
+      "raw_request": "b'\\x03\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-05 01:45:23.096000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb3e9dee735f9548c5c",
+      "raw_request": "None",
+      "context": "adcs_sun"
+    },
+    {
+      "time": "2026-11-05 01:45:23.101000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb3e9dee735f9548c5e",
+      "raw_request": "b'\\x03\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-05 01:45:23.707000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb3e9dee735f9548c60",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-05 01:45:23.712000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb3e9dee735f9548c62",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-05 01:45:24.309000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb4e9dee735f9548c64",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-05 01:45:24.318000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebdfb4e9dee735f9548c66",
+      "command": "/SERVICE-OBC/GetTemperature",
+      "args": {}
+    },
+    {
+      "time": "2026-11-05 02:46:12.577000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebedf4e9dee735f9548c68",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-05 02:46:12.609000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aebedf4e9dee735f9548c6a",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-05 06:35:44.229000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aec23c0e9dee735f9548c6c",
+      "raw_request": "None",
+      "context": "gyroscope"
+    },
+    {
+      "time": "2026-11-05 06:35:44.266000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6aec23c0e9dee735f9548c6e",
+      "raw_request": "b'\\x03\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-09 12:55:38.351000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6af1c2ca4411f58d696780cc",
+      "action": "comm_reachability_probe"
+    },
+    {
+      "time": "2026-11-13 11:15:56.412000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6af6f16c522d16ce50918edd",
+      "action": "comm_reachability_probe"
+    },
+    {
+      "time": "2026-11-17 11:37:18.219000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc3c6e80d95fea73d6faa5",
+      "action": "comm_reachability_probe"
+    },
+    {
+      "time": "2026-11-17 11:42:32.995000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc3da880d95fea73d6faa7",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 11:42:33.006000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc3da980d95fea73d6faa9",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 11:49:39.762000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc3f5380d95fea73d6faab",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 11:49:39.769000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc3f5380d95fea73d6faad",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:30:45.837000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc48f58760aa11884a087c",
+      "action": "comm_reachability_probe"
+    },
+    {
+      "time": "2026-11-17 12:30:45.919000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc48f58760aa11884a087e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:30:45.928000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc48f58760aa11884a0880",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:31:03.755000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49078760aa11884a0882",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:31:03.765000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49078760aa11884a0884",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:31:05.353000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49098760aa11884a0886",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:31:05.359000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49098760aa11884a0888",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:31:06.960000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc490a8760aa11884a088a",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:31:06.966000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc490a8760aa11884a088c",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:31:08.620000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc490c8760aa11884a088e",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:31:08.625000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc490c8760aa11884a0890",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:31:10.522000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc490e8760aa11884a0892",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:31:10.527000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc490e8760aa11884a0894",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:33:15.881000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc498b8760aa11884a0896",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:33:15.889000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc498b8760aa11884a0898",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:33:17.581000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc498d8760aa11884a089a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:33:17.587000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc498d8760aa11884a089c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:33:19.384000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc498f8760aa11884a089e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:33:19.389000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc498f8760aa11884a08a0",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:33:20.985000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49908760aa11884a08a2",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:33:20.993000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49908760aa11884a08a4",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:33:22.488000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49928760aa11884a08a6",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:33:22.493000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc49928760aa11884a08a8",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:38:55.387000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4adf8760aa11884a08aa",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:38:55.402000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4adf8760aa11884a08ac",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:38:56.282000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ae08760aa11884a08ae",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:38:56.286000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ae08760aa11884a08b0",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:38:57.796000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ae18760aa11884a08b2",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:38:57.806000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ae18760aa11884a08b4",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:39:44.494000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4b108760aa11884a08b6",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:39:44.505000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4b108760aa11884a08b8",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:39:45.188000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4b118760aa11884a08ba",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:39:45.193000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4b118760aa11884a08bc",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:39:46.690000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4b128760aa11884a08be",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:39:46.718000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4b128760aa11884a08c0",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:09.487000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba18760aa11884a08c2",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:09.495000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba18760aa11884a08c4",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:10.185000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba28760aa11884a08c6",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:10.192000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba28760aa11884a08c8",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:11.989000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba38760aa11884a08ca",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:42:11.994000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba38760aa11884a08cc",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:42:13.791000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba58760aa11884a08ce",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:13.798000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba58760aa11884a08d0",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:15.103000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba78760aa11884a08d2",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:15.109000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4ba78760aa11884a08d4",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:20.912000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bac8760aa11884a08d6",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:20.920000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bac8760aa11884a08d8",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:22.711000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bae8760aa11884a08da",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:42:22.717000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bae8760aa11884a08dc",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:42:24.411000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb08760aa11884a08de",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:24.415000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb08760aa11884a08e0",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:25.514000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb18760aa11884a08e2",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:25.520000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb18760aa11884a08e4",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:29.319000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb58760aa11884a08e6",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:42:29.324000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb58760aa11884a08e8",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:42:31.026000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb78760aa11884a08ea",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:31.031000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb78760aa11884a08ec",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:32.138000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb88760aa11884a08ee",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:32.158000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb88760aa11884a08f0",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:42:33.939000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb98760aa11884a08f2",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:42:33.944000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bb98760aa11884a08f4",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:42:35.641000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bbb8760aa11884a08f6",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:42:35.647000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4bbb8760aa11884a08f8",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:44:05.965000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c158760aa11884a08fa",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:44:05.974000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c158760aa11884a08fc",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:45:33.555000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c6d8760aa11884a08fe",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:45:33.570000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c6d8760aa11884a0900",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:45:41.464000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c758760aa11884a0902",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:45:41.477000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c758760aa11884a0904",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:45:43.461000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c778760aa11884a0906",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:45:43.467000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c778760aa11884a0908",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:45:44.663000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c788760aa11884a090a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:45:44.668000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c788760aa11884a090c",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:45:48.567000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c7c8760aa11884a090e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:45:48.576000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c7c8760aa11884a0910",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:45:50.567000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c7e8760aa11884a0912",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:45:50.572000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4c7e8760aa11884a0914",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:49:02.247000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d3e8760aa11884a0916",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:49:02.255000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d3e8760aa11884a0918",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:49:07.962000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d438760aa11884a091a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:49:08.064000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d448760aa11884a091c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:49:11.129000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d478760aa11884a091e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:49:11.136000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d478760aa11884a0920",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:49:13.030000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d498760aa11884a0922",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:49:13.036000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d498760aa11884a0924",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:05.256000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d7d8760aa11884a0926",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:05.266000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d7d8760aa11884a0928",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:10.767000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d828760aa11884a092a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:10.772000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d828760aa11884a092c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:13.979000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d858760aa11884a092e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:50:13.995000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d858760aa11884a0930",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:50:15.874000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d878760aa11884a0932",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:15.879000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d878760aa11884a0934",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:16.599000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d888760aa11884a0936",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:16.603000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d888760aa11884a0938",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:22.211000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d8e8760aa11884a093a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:22.219000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d8e8760aa11884a093c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:25.244000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d918760aa11884a093e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:50:25.249000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d918760aa11884a0940",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:50:27.145000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d938760aa11884a0942",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:27.150000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d938760aa11884a0944",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:28.249000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d948760aa11884a0946",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:28.257000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d948760aa11884a0948",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:33.960000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d998760aa11884a094a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:33.970000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d998760aa11884a094c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:37.259000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d9d8760aa11884a094e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:50:37.265000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d9d8760aa11884a0950",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:50:38.859000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d9e8760aa11884a0952",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:38.863000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4d9e8760aa11884a0954",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:48.275000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4da88760aa11884a0956",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:48.287000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4da88760aa11884a0958",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:54.084000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4dae8760aa11884a095a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:54.092000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4dae8760aa11884a095c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:56.904000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db08760aa11884a095e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:50:56.910000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db08760aa11884a0960",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:50:58.807000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db28760aa11884a0962",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:58.813000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db28760aa11884a0964",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:50:59.828000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db38760aa11884a0966",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:50:59.848000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db38760aa11884a0968",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:51:05.641000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db98760aa11884a096a",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:51:05.720000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4db98760aa11884a096c",
+      "raw_request": "b'\\x02\\x02\\x01'",
+      "context": "interface_request_and_replies"
+    },
+    {
+      "time": "2026-11-17 12:51:08.644000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4dbc8760aa11884a096e",
+      "action": "telemetry_sample"
+    },
+    {
+      "time": "2026-11-17 12:51:08.650000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4dbc8760aa11884a0970",
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "args": {}
+    },
+    {
+      "time": "2026-11-17 12:51:10.546000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4dbe8760aa11884a0972",
+      "raw_request": "None",
+      "context": "eps_set_heater"
+    },
+    {
+      "time": "2026-11-17 12:51:10.551000",
+      "origin": "local_honeysat_mongodb",
+      "source_doc_id": "6afc4dbe8760aa11884a0974",
+      "raw_request": "b'\\x02\\x02\\x00'",
+      "context": "interface_request_and_replies"
+    }
+  ],
+  "limitations": [
+    {
+      "doc_id": "6aebdf82e9dee735f9548c50",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "gyroscope"
+      }
+    },
+    {
+      "doc_id": "6aebdf82e9dee735f9548c52",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x03\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6aebdfb1e9dee735f9548c54",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "gyroscope"
+      }
+    },
+    {
+      "doc_id": "6aebdfb1e9dee735f9548c56",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x03\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6aebdfb2e9dee735f9548c58",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "magnetic_field_mGauss"
+      }
+    },
+    {
+      "doc_id": "6aebdfb2e9dee735f9548c5a",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x03\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6aebdfb3e9dee735f9548c5c",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "adcs_sun"
+      }
+    },
+    {
+      "doc_id": "6aebdfb3e9dee735f9548c5e",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x03\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6aec23c0e9dee735f9548c6c",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "gyroscope"
+      }
+    },
+    {
+      "doc_id": "6aec23c0e9dee735f9548c6e",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x03\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc49098760aa11884a0886",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc49098760aa11884a0888",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc490c8760aa11884a088e",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc490c8760aa11884a0890",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc498d8760aa11884a089a",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc498d8760aa11884a089c",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc49908760aa11884a08a2",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc49908760aa11884a08a4",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4adf8760aa11884a08aa",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4adf8760aa11884a08ac",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4ae08760aa11884a08ae",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4ae08760aa11884a08b0",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4ae18760aa11884a08b2",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4ae18760aa11884a08b4",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4b108760aa11884a08b6",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4b108760aa11884a08b8",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4b118760aa11884a08ba",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4b118760aa11884a08bc",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4b128760aa11884a08be",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4b128760aa11884a08c0",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4ba18760aa11884a08c2",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4ba18760aa11884a08c4",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4ba28760aa11884a08c6",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4ba28760aa11884a08c8",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4ba58760aa11884a08ce",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4ba58760aa11884a08d0",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4ba78760aa11884a08d2",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4ba78760aa11884a08d4",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4bac8760aa11884a08d6",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4bac8760aa11884a08d8",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x01'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4bb08760aa11884a08de",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4bb08760aa11884a08e0",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4bb18760aa11884a08e2",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4bb18760aa11884a08e4",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4bb78760aa11884a08ea",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4bb78760aa11884a08ec",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4bb88760aa11884a08ee",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4bb88760aa11884a08f0",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    },
+    {
+      "doc_id": "6afc4bbb8760aa11884a08f6",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "None",
+        "context": "eps_set_heater"
+      }
+    },
+    {
+      "doc_id": "6afc4bbb8760aa11884a08f8",
+      "reason": "unrecognized_command",
+      "raw": {
+        "raw_request": "b'\\x02\\x02\\x00'",
+        "context": "interface_request_and_replies"
+      }
+    }
+  ]
+}

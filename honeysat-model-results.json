@@ -1,0 +1,31 @@
+[
+  {
+    "queued": {
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "epoch": 1
+    },
+    "revoked": true,
+    "release_epoch": 2,
+    "result": "denied_before_yamcs_submission",
+    "scenario": "revoked",
+    "expected": "denied_before_yamcs_submission",
+    "passed": true
+  },
+  {
+    "queued": {
+      "command": "/SERVICE-EPS/FetchEPSData",
+      "epoch": 1
+    },
+    "revoked": false,
+    "release_epoch": 1,
+    "result": "completed",
+    "command_id": "1794916216327-172.20.0.1-1",
+    "telemetry": {
+      "value": 8037,
+      "generation_time": "2026-11-17 19:49:38.771000+08:00"
+    },
+    "scenario": "authorized",
+    "expected": "completed",
+    "passed": true
+  }
+]

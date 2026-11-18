@@ -1,0 +1,49 @@
+{
+  "scenario": "auth_change_revoke",
+  "times": 5,
+  "tally": {
+    "policy_violation": 5
+  },
+  "results": [
+    {
+      "run_id": "20261117T125004-77eb7be2",
+      "verdict": "policy_violation",
+      "policy_id": "EXP-1",
+      "rationale": "command(s) ['1794919842289-172.20.0.1-2'] released after revocation of administrator and executed (AUTH-1/2: authorization checked only at submission)",
+      "evidence_events": 102,
+      "restore_errors": []
+    },
+    {
+      "run_id": "20261117T125015-b80b1389",
+      "verdict": "policy_violation",
+      "policy_id": "EXP-1",
+      "rationale": "command(s) ['1794919853622-172.20.0.1-6'] released after revocation of administrator and executed (AUTH-1/2: authorization checked only at submission)",
+      "evidence_events": 102,
+      "restore_errors": []
+    },
+    {
+      "run_id": "20261117T125027-62d0f4d3",
+      "verdict": "policy_violation",
+      "policy_id": "EXP-1",
+      "rationale": "command(s) ['1794919865280-172.20.0.1-10'] released after revocation of administrator and executed (AUTH-1/2: authorization checked only at submission)",
+      "evidence_events": 102,
+      "restore_errors": []
+    },
+    {
+      "run_id": "20261117T125047-04c38b97",
+      "verdict": "policy_violation",
+      "policy_id": "EXP-1",
+      "rationale": "command(s) ['1794919885309-172.20.0.1-14'] released after revocation of administrator and executed (AUTH-1/2: authorization checked only at submission)",
+      "evidence_events": 102,
+      "restore_errors": []
+    },
+    {
+      "run_id": "20261117T125058-dd0c84d8",
+      "verdict": "policy_violation",
+      "policy_id": "EXP-1",
+      "rationale": "command(s) ['1794919896868-172.20.0.1-18'] released after revocation of administrator and executed (AUTH-1/2: authorization checked only at submission)",
+      "evidence_events": 102,
+      "restore_errors": []
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "policies_version": "1.0",
+  "created": "2026-11-17",
+  "target": "HoneySat experiment-1 CCSDS stack (Yamcs 5.10.8-SNAPSHOT + RACCOON + HoneySat simulator)",
+  "policies": [
+    {
+      "id": "AUTH-1",
+      "statement": "发令前必须持有该命令的 Command object privilege；检查只在命令提交时执行一次",
+      "type": "target-native",
+      "enforced_at": "Yamcs CommandsApi.issueCommand",
+      "source": {"kind": "code", "ref": "yamcs-core/src/main/java/org/yamcs/http/api/CommandsApi.java:101", "note": "ctx.checkObjectPrivileges(ObjectPrivilegeType.Command, cmd.getQualifiedName())"},
+      "verified": "代码确认；实测 administrator (Command:.*) 可发令"
+    },
+    {
+      "id": "AUTH-2",
+      "statement": "队列控制（block/enable/disable/accept/reject）只要求 ControlCommandQueue system privilege；不重新检查被控命令的 Command object privilege，也不比对命令原提交者",
+      "type": "target-native",
+      "enforced_at": "Yamcs QueuesApi",
+      "source": {"kind": "code", "ref": "yamcs-core/src/main/java/org/yamcs/http/api/QueuesApi.java:51-229 (每处 ctx.checkSystemPrivilege(ControlCommandQueue))"},
+      "consequence": "撤权后的已排队命令仍可能被任何持有 ControlCommandQueue 的账号放行 —— TOCTOU 缺口为原生架构事实",
+      "verified": "代码确认；实测 administrator 无此权限 (403)，root 有"
+    },
+    {
+      "id": "QUEUE-1",
+      "statement": "队列状态机：DISABLED 队列在入队时即拒收 (Acknowledge_Queued=NOK 'Queue disabled')；BLOCKED 驻留；ENABLED 立即放行；置为 ENABLED 时无差别放行全部驻留命令；置 DISABLED 时全部以 NOK 失败",
+      "type": "target-native",
+      "enforced_at": "Yamcs CommandQueueManager",
+      "source": {"kind": "code", "ref": "yamcs-core/src/main/java/org/yamcs/commanding/CommandQueueManager.java addCommand(L239-281), setQueueState(L557-593)"},
+      "verified": "代码确认；实测队列存在且 ENABLED (acceptedCommandsCount=2)"
+    },
+    {
+      "id": "QUEUE-2",
+      "statement": "放行前取消的唯一机制是队列 reject：从队列移除该命令，Acknowledge_Released=NOK('Rejected by <username>')，CommandComplete=NOK；已放行/已发送的命令服务端无任何撤回机制（AckStatus.CANCELLED 存在但 5.10 无任何发布点）",
+      "type": "target-native",
+      "enforced_at": "Yamcs CommandQueueManager.rejectCommand + QueuesApi :reject",
+      "source": {"kind": "code", "ref": "CommandQueueManager.java:473-509; commands_service.proto 无 cancel RPC; CommandHistoryPublisher.java:19"},
+      "verified": "代码确认；REST :reject 端点存在"
+    },
+    {
+      "id": "QUEUE-3",
+      "statement": "未配置 command-queue.yaml 时每个 processor 仅一个 default 队列，初始 ENABLED（从 MementoDb 恢复上次状态）",
+      "type": "target-native",
+      "enforced_at": "Yamcs CommandQueueManager",
+      "source": {"kind": "code", "ref": "CommandQueueManager.java:114-146"},
+      "verified": "实测 GET /queues 返回单一 default 队列"
+    },
+    {
+      "id": "AUTH-3",
+      "statement": "用户与角色管理（创建/禁用用户、改密码、改角色）要求 ControlAccess system privilege；角色为配置静态定义，无运行时创建",
+      "type": "target-native",
+      "enforced_at": "Yamcs IamApi",
+      "source": {"kind": "code", "ref": "yamcs-core/src/main/java/org/yamcs/http/api/IamApi.java:67-131; iam.proto"},
+      "verified": "代码确认"
+    },
+    {
+      "id": "AUTH-4",
+      "statement": "认证链以 YamlAuthModule(required: true) 开头且先于 DirectoryAuthModule：数据库中新建的用户（IamApi 可创建）无法通过认证，可用账号集是 users.yaml 的静态集合",
+      "type": "target-native",
+      "enforced_at": "Yamcs SecurityStore authModules 顺序",
+      "source": {"kind": "deployment-config + 实测", "ref": "yamcs-instance/etc/security.yaml (容器内核实); 实测 POST /api/users 创建 login-test 后 /auth/token 返回 401，administrator 成功"},
+      "verified": "2026-11-17 实测确认"
+    },
+    {
+      "id": "PUS-1",
+      "statement": "PUS 确认链：TC 解析/APID/服务检查失败回 TM(1,2) acceptance failure；成功回 TM(1,1)；业务处理发 TM(1,3) start success；完成回 TM(1,7) 或失败 TM(1,8)；Yamcs 端 JS 验证器按 apid+seqcount 将确认与命令关联",
+      "type": "target-native",
+      "enforced_at": "RACCOON rccn_usr PUS 服务层 + Yamcs MDB verifiers",
+      "source": {"kind": "code", "ref": "raccoon-wrapper/src/rccn_usr/src/pus/service/mod.rs:194-309; mdb/xtce-pus-frame-attempt2.xml:226-339"},
+      "verified": "代码确认；FetchEPSData 实测 Complete 成功"
+    },
+    {
+      "id": "PUS-2",
+      "statement": "卫星可达性检查：处理 TC 前检查仿真器可达，不可达则拒绝；本部署 ALWAYS_REACHABLE=1 使检查恒真",
+      "type": "target-native (deployment 配置改变行为)",
+      "enforced_at": "RACCOON zmq_interface::is_satellite_reachable",
+      "source": {"kind": "deployment-config", "ref": "docker-compose-ccsds.yaml:55; hs_zmq_interface/src/zmq_interface.rs:32-50"},
+      "verified": "代码确认"
+    },
+    {
+      "id": "EXP-1",
+      "statement": "实验定义策略（非目标原生）：授权撤销必须取消该操作者尚未放行的排队命令；已放行的命令不可撤回（依据 QUEUE-2），故保护边界在放行点",
+      "type": "experiment-defined (机制实验策略, 单独标识)",
+      "enforced_at": "实验判定器 oracle.py（待实现）：对比撤权时刻与 Acknowledge_Released 时刻",
+      "source": {"kind": "experiment", "ref": "README.md 演示问题; policies.json EXP-1"},
+      "verified": "待阶段 2-4 实测"
+    },
+    {
+      "id": "EXP-2",
+      "statement": "实验定义策略（非目标原生）：SetHeater 仅允许 Mode ∈ {0,1}；效果判定期望 heater 状态与 EPS 功耗模型一致（5W 增量）；越界参数应在提交前被实验执行器拒绝",
+      "type": "experiment-defined (实验扩展命令的取值契约)",
+      "enforced_at": "scenario 校验 + RACCOON 端 mode>0 即开（仿真器语义）",
+      "source": {"kind": "experiment", "ref": "honeysat-api SubsystemsStates/EPSState.py:74-77; SuchaiState.py:142-159"},
+      "verified": "待阶段 2 实测"
+    }
+  ],
+  "notes": [
+    "AUTH-1/2/QUEUE-1/2/3 为 HoneySat/Yamcs 原生语义，来源为源码级证据；若报告行为观察而非策略违反，引用相应 policy id 的依据字段",
+    "无目标原生依据的场景（如'撤权必须取消排队命令'）一律标记 experiment-defined，不能与目标原生策略混淆",
+    "Yamcs 文档依据：https://docs.yamcs.org/yamcs-server-manual/security/ 与 command-queue 语义（以本部署源码 5.10.8-SNAPSHOT 为准）"
+  ]
+}

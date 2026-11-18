@@ -1,0 +1,53 @@
+{
+  "scenario_id": "gen_42_010",
+  "description": "任务条件改变（地面队列禁用即拒绝受理）：禁用队列后提交应被拒，状态不变",
+  "policy_ids": [
+    "QUEUE-1"
+  ],
+  "initial_state": {
+    "queue": "ENABLED",
+    "heater": 0
+  },
+  "steps": [
+    {
+      "step_id": "g1",
+      "action": "disable_queue"
+    },
+    {
+      "step_id": "g2",
+      "action": "issue_command",
+      "command": "/SERVICE-EPS/SetHeater",
+      "args": {
+        "Mode": 1
+      },
+      "timeout": 10
+    },
+    {
+      "step_id": "g3",
+      "action": "wait",
+      "seconds": 1
+    },
+    {
+      "step_id": "g4",
+      "action": "release_queue"
+    },
+    {
+      "step_id": "g5",
+      "action": "query_eps"
+    },
+    {
+      "action": "wait",
+      "seconds": 2,
+      "step_id": "g6"
+    },
+    {
+      "step_id": "g7",
+      "action": "read_state"
+    }
+  ],
+  "expected": {
+    "heater": "unchanged",
+    "queue": "ENABLED",
+    "verdict": "pass"
+  }
+}

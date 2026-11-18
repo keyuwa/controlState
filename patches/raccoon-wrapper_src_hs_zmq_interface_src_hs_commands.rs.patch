@@ -1,0 +1,18 @@
+--- patches/baseline/raccoon-wrapper/src/hs_zmq_interface/src/hs_commands.rs	2026-11-17 20:18:16
++++ /Users/keyu/code/honeySat/HoneySat/deployment/projects/raccoon-wrapper/src/hs_zmq_interface/src/hs_commands.rs	2026-11-17 20:18:27
+@@ -10,8 +10,15 @@
+ 
+ // EPS Commands
+ pub const EPS_BATTERY: &[u8] = &[SIM_EPS_ID, 0x00];
++pub const SIM_EPS_ADDR_HEATER: u8 = 0x02;
+ 
++/// Build an EPS heater set command: [SIM_EPS_ID, 0x02, mode]
++/// mode = 0 switches the heater off, any value > 0 switches it on.
++pub fn eps_set_heater(mode: u8) -> Vec<u8> {
++    vec![SIM_EPS_ID, SIM_EPS_ADDR_HEATER, mode]
++}
+ 
++
+ // ACDS Commands
+ pub const ADCS_MAGNETIC: &[u8] = &[SIM_ADCS_ID, 0x00];
+ pub const ADCS_GYRO: &[u8] = &[SIM_ADCS_ID, 0x01];
